@@ -135,11 +135,6 @@
           </SubComponents>
         </Container>
         <Component class="javax.swing.JLabel" name="lblimagen">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/mycompany/artistas/imagenes/mariaBecerra.jpg"/>
-            </Property>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

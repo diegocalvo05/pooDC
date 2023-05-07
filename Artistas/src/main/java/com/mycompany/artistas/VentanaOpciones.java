@@ -62,8 +62,6 @@ public class VentanaOpciones extends javax.swing.JFrame {
         txtDescripcion.setRows(5);
         jScrollPane1.setViewportView(txtDescripcion);
 
-        lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/artistas/imagenes/mariaBecerra.jpg"))); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -124,18 +122,18 @@ public class VentanaOpciones extends javax.swing.JFrame {
     private void cmbArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbArtistasActionPerformed
         // TODO add your handling code here:
         
-        Artista MariaBecerra = new Artista("Cantante Argentina", "src/com.mycompany/mariaaudio.wav", "/com/mycompany/artistas/imagenes/mariaBecerra.jpg");
-        Artista DUKI = new Artista("Cantante Argentino", "src/com.mycompany/dukiaudio.wav", "/com/mycompany/artistas/imagenes/duki.jpg");
-        Artista NickiNicole = new Artista("Buena Cantante Argentina", "src/com.mycompany/nickiaudio.wav", "/com/mycompany/artistas/imagenes/nickiNicole.jpg");
-        Artista BadBunny = new Artista("Cantante raro", "src/com.mycompany/badbunnyaudio.wav", "/com/mycompany/artistas/imagenes/BadBunny.jpg");
-        Artista Feid = new Artista("Cantante Colombiano", "src/com.mycompany/feidaudio.wav", "/com/mycompany/artistas/imagenes/feid.jpg");
+        Artista MariaBecerra = new Artista("Cantante Argentina", "src/com.mycompany/mariaaudio.wav", "src/main/java/com/mycompany/artistas/imagenes/mariaBecerra.jpg");
+        Artista DUKI = new Artista("Cantante Argentino", "src/com.mycompany/dukiaudio.wav", "src/main/java/com/mycompany/artistas/imagenes/duki.jpg");
+        Artista NickiNicole = new Artista("Buena Cantante Argentina", "src/com.mycompany/nickiaudio.wav", "src/main/java/com/mycompany/artistas/imagenes/nickiNicole.jpg");
+        Artista BadBunny = new Artista("Cantante raro", "src/com.mycompany/badbunnyaudio.wav", "src/main/java/com/mycompany/artistas/imagenes/BadBunny.jpg");
+        Artista Feid = new Artista("Cantante Colombiano", "src/com.mycompany/feidaudio.wav", "src/main/java/com/mycompany/artistas/imagenes/feid.jpg");
         
         if(cmbArtistas.getSelectedItem().toString() == "Maria Becerra"){
            
             
             txtDescripcion.setText(MariaBecerra.getDescripcion());
             //lblimagen.setIcon(new ImageIcon(MariaBecerra.getImagen()));
-            lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("src/main/java/com/mycompany/artistas/imagenes/mariaBecerra.jpg")));
+            lblimagen.setIcon(resizeImage(MariaBecerra.getImagen(), 150, 150));
             //jPanel1.add(lblimagen);
             
             
@@ -145,7 +143,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
             //ImageIcon icon = new ImageIcon(DUKI.getImagen());
             
             txtDescripcion.setText(DUKI.getDescripcion());
-            lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource(DUKI.getImagen())));
+            lblimagen.setIcon(resizeImage(DUKI.getImagen(), 150, 150));
             
             //lblimagen.setIcon(icon);
         }
@@ -154,7 +152,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
             //ImageIcon icon = new ImageIcon(NickiNicole.getImagen());
             
             txtDescripcion.setText(NickiNicole.getDescripcion());
-            lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource(NickiNicole.getImagen())));
+            lblimagen.setIcon(resizeImage(NickiNicole.getImagen(), 150, 150));
             
             //lblimagen.setIcon(icon);
         }
@@ -163,7 +161,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
             //ImageIcon icon = new ImageIcon(BadBunny.getImagen());
             
             txtDescripcion.setText(BadBunny.getDescripcion());
-            lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource(BadBunny.getImagen())));
+            lblimagen.setIcon(resizeImage(BadBunny.getImagen(), 150, 150));
             //lblimagen.setIcon(icon);
         }
         else if(cmbArtistas.getSelectedItem().toString() == "Feid"){
@@ -171,7 +169,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
             //ImageIcon icon = new ImageIcon(Feid.getImagen());
             
             txtDescripcion.setText(Feid.getDescripcion());
-            lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource(Feid.getImagen())));
+            lblimagen.setIcon(resizeImage(Feid.getImagen(), 150, 150));
             //lblimagen.setIcon(icon);
         }
     }//GEN-LAST:event_cmbArtistasActionPerformed
@@ -220,4 +218,8 @@ public class VentanaOpciones extends javax.swing.JFrame {
     private javax.swing.JLabel lblimagen;
     private javax.swing.JTextArea txtDescripcion;
     // End of variables declaration//GEN-END:variables
+
+    private ImageIcon resizeImage(String path, int width, int height) {
+        return new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH));
+    }
 }
