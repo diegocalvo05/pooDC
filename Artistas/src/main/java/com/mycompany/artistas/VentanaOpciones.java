@@ -219,6 +219,10 @@ public class VentanaOpciones extends javax.swing.JFrame {
     private javax.swing.JTextArea txtDescripcion;
     // End of variables declaration//GEN-END:variables
         private ImageIcon resizeImage(String path, int width, int height) {
-        return new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH));
+            var rawImage = new ImageIcon(path);
+            var imageConverted = rawImage.getImage();
+            var imageResized = imageConverted.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+            var newResizedIcon = new ImageIcon(imageResized);
+        return newResizedIcon;
     }
 }
