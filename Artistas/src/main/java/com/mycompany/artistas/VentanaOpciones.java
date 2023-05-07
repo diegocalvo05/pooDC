@@ -25,9 +25,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
      */
     public VentanaOpciones() {
         initComponents();
-        
-        
-        
+
         cmbArtistas.addItem("Maria Becerra");
         cmbArtistas.addItem("DUKI");
         cmbArtistas.addItem("Nicki Nicole");
@@ -128,57 +126,54 @@ public class VentanaOpciones extends javax.swing.JFrame {
 
     private void cmbArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbArtistasActionPerformed
         // TODO add your handling code here:
-        
+
         Artista MariaBecerra = new Artista("Cantante Argentina", "src/com.mycompany/mariaaudio.wav", "/com/mycompany/artistas/imagenes/mariaBecerra.jpg");
         Artista DUKI = new Artista("Cantante Argentino", "src/com.mycompany/dukiaudio.wav", "/com/mycompany/artistas/imagenes/duki.jpg");
         Artista NickiNicole = new Artista("Buena Cantante Argentina", "src/com.mycompany/nickiaudio.wav", "/com/mycompany/artistas/imagenes/nickiNicole.jpg");
         Artista BadBunny = new Artista("Cantante raro", "src/com.mycompany/badbunnyaudio.wav", "/com/mycompany/artistas/imagenes/BadBunny.jpg");
         Artista Feid = new Artista("Cantante Colombiano", "src/com.mycompany/feidaudio.wav", "/com/mycompany/artistas/imagenes/feid.jpg");
-        
-        if(cmbArtistas.getSelectedItem().toString() == "Maria Becerra"){
-           
-            
-            txtDescripcion.setText(MariaBecerra.getDescripcion());
-            //lblimagen.setIcon(new ImageIcon(MariaBecerra.getImagen()));
-            lblimagen.setIcon(resizeImage("src/main/java/com/mycompany/artistas/imagenes/mariaBecerra.jpg",500, 300));
-            //jPanel1.add(lblimagen);
-            
-            
-        }
-        else if(cmbArtistas.getSelectedItem().toString() == "DUKI"){
-            
-            //ImageIcon icon = new ImageIcon(DUKI.getImagen());
-            
-            txtDescripcion.setText(DUKI.getDescripcion());
-            lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource(DUKI.getImagen())));
-            
-            //lblimagen.setIcon(icon);
-        }
-        else if(cmbArtistas.getSelectedItem().toString() == "Nicki Nicole"){
-            
-            //ImageIcon icon = new ImageIcon(NickiNicole.getImagen());
-            
-            txtDescripcion.setText(NickiNicole.getDescripcion());
-            lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource(NickiNicole.getImagen())));
-            
-            //lblimagen.setIcon(icon);
-        }
-        else if(cmbArtistas.getSelectedItem().toString() == "Bad Bunny"){
-            
-            //ImageIcon icon = new ImageIcon(BadBunny.getImagen());
-            
-            txtDescripcion.setText(BadBunny.getDescripcion());
-            lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource(BadBunny.getImagen())));
-            //lblimagen.setIcon(icon);
-        }
-        else if(cmbArtistas.getSelectedItem().toString() == "Feid"){
-            
-            //ImageIcon icon = new ImageIcon(Feid.getImagen());
-            
-            txtDescripcion.setText(Feid.getDescripcion());
-            lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource(Feid.getImagen())));
-            //lblimagen.setIcon(icon);
-        }
+
+        if (null != cmbArtistas.getSelectedItem().toString())
+            switch (cmbArtistas.getSelectedItem().toString()) {
+                case "Maria Becerra":
+                    txtDescripcion.setText(MariaBecerra.getDescripcion());
+                    //lblimagen.setIcon(new ImageIcon(MariaBecerra.getImagen()));
+                    lblimagen.setIcon(resizeImage("src/main/java/com/mycompany/artistas/imagenes/mariaBecerra.jpg", 500, 300));
+                    //jPanel1.add(lblimagen);
+                    break;
+                case "DUKI":
+                    //ImageIcon icon = new ImageIcon(DUKI.getImagen());
+
+                    txtDescripcion.setText(DUKI.getDescripcion());
+                    lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource(DUKI.getImagen())));
+
+                    //lblimagen.setIcon(icon);
+                    break;
+                case "Nicki Nicole":
+                    //ImageIcon icon = new ImageIcon(NickiNicole.getImagen());
+
+                    txtDescripcion.setText(NickiNicole.getDescripcion());
+                    lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource(NickiNicole.getImagen())));
+
+                    //lblimagen.setIcon(icon);
+                    break;
+                case "Bad Bunny":
+                    //ImageIcon icon = new ImageIcon(BadBunny.getImagen());
+
+                    txtDescripcion.setText(BadBunny.getDescripcion());
+                    lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource(BadBunny.getImagen())));
+                    //lblimagen.setIcon(icon);
+                    break;
+                case "Feid":
+                    //ImageIcon icon = new ImageIcon(Feid.getImagen());
+
+                    txtDescripcion.setText(Feid.getDescripcion());
+                    lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource(Feid.getImagen())));
+                    //lblimagen.setIcon(icon);
+                    break;
+                default:
+                    break;
+            }
     }//GEN-LAST:event_cmbArtistasActionPerformed
 
     /**
@@ -226,21 +221,21 @@ public class VentanaOpciones extends javax.swing.JFrame {
     private javax.swing.JTextArea txtDescripcion;
     // End of variables declaration//GEN-END:variables
         private ImageIcon resizeImage(String path, int width, int height) {
-            var rawImage = new ImageIcon(path);
-            var imageConverted = rawImage.getImage();
-            var imageResized = imageConverted.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
-            var newResizedIcon = new ImageIcon(imageResized);
+        var rawImage = new ImageIcon(path);
+        var imageConverted = rawImage.getImage();
+        var imageResized = imageConverted.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+        var newResizedIcon = new ImageIcon(imageResized);
         return newResizedIcon;
     }
-        
-        private void playSound(String filePath) {
+
+    private void playSound(String filePath) {
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             clip.start();
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
-            JOptionPane.showMessageDialog(null, "Error playing sound: " + ex.getMessage(),"ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error playing sound: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
