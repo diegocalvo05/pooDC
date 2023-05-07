@@ -4,8 +4,15 @@
  */
 package com.mycompany.artistas;
 
-import javax.swing.Icon;
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -224,5 +231,16 @@ public class VentanaOpciones extends javax.swing.JFrame {
             var imageResized = imageConverted.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
             var newResizedIcon = new ImageIcon(imageResized);
         return newResizedIcon;
+    }
+        
+        private void playSound(String filePath) {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
+            JOptionPane.showMessageDialog(null, "Error playing sound: " + ex.getMessage(),"ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
