@@ -62,8 +62,6 @@ public class VentanaOpciones extends javax.swing.JFrame {
         txtDescripcion.setRows(5);
         jScrollPane1.setViewportView(txtDescripcion);
 
-        lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/artistas/imagenes/mariaBecerra.jpg"))); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -135,7 +133,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
             
             txtDescripcion.setText(MariaBecerra.getDescripcion());
             //lblimagen.setIcon(new ImageIcon(MariaBecerra.getImagen()));
-            lblimagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("src/main/java/com/mycompany/artistas/imagenes/mariaBecerra.jpg")));
+            lblimagen.setIcon(new ImageIcon("src/main/java/com/mycompany/artistas/imagenes/mariaBecerra.jpg"));
             //jPanel1.add(lblimagen);
             
             
