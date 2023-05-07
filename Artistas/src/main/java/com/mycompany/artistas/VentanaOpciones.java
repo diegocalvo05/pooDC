@@ -4,8 +4,15 @@
  */
 package com.mycompany.artistas;
 
+import java.io.File;
+import java.io.IOException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  *
@@ -44,6 +51,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         lblimagen = new javax.swing.JLabel();
+        btnSonido = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +69,13 @@ public class VentanaOpciones extends javax.swing.JFrame {
         txtDescripcion.setColumns(20);
         txtDescripcion.setRows(5);
         jScrollPane1.setViewportView(txtDescripcion);
+
+        btnSonido.setText("Sonido");
+        btnSonido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSonidoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -83,7 +98,10 @@ public class VentanaOpciones extends javax.swing.JFrame {
                                 .addComponent(cmbArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(429, 429, 429)
-                        .addComponent(lblTitulo)))
+                        .addComponent(lblTitulo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(207, 207, 207)
+                        .addComponent(btnSonido)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -102,7 +120,9 @@ public class VentanaOpciones extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(102, 102, 102)
                         .addComponent(lblimagen, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(btnSonido)
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,6 +194,37 @@ public class VentanaOpciones extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbArtistasActionPerformed
 
+    private void btnSonidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSonidoActionPerformed
+        // TODO add your handling code here:
+        
+        Artista MariaBecerra = new Artista("Cantante Argentina", "src/main/java/com/mycompany/artistas/imagenes/mariaaudio.wav", "src/main/java/com/mycompany/artistas/imagenes/mariaBecerra.jpg");
+        Artista DUKI = new Artista("Cantante Argentino", "src/main/java/com/mycompany/artistas/imagenes/dukiaudio.wav", "src/main/java/com/mycompany/artistas/imagenes/duki.jpg");
+        Artista NickiNicole = new Artista("Buena Cantante Argentina", "src/main/java/com/mycompany/artistas/imagenes/nickiaudio.wav", "src/main/java/com/mycompany/artistas/imagenes/nickiNicole.jpg");
+        Artista BadBunny = new Artista("Cantante raro", "src/main/java/com/mycompany/artistas/imagenes/badbunnyaudio.wav", "src/main/java/com/mycompany/artistas/imagenes/BadBunny.jpg");
+        Artista Feid = new Artista("Cantante Colombiano", "src/main/java/com/mycompany/artistas/imagenes/feidaudio.wav", "src/main/java/com/mycompany/artistas/imagenes/feid.jpg");
+        
+        if(cmbArtistas.getSelectedItem().toString() == "Maria Becerra"){
+    
+            playAudio(MariaBecerra.getAudio());
+        }
+        else if(cmbArtistas.getSelectedItem().toString() == "DUKI"){
+            
+            playAudio(DUKI.getAudio());
+        }
+        else if(cmbArtistas.getSelectedItem().toString() == "Nicki Nicole"){
+            
+            playAudio(NickiNicole.getAudio());
+        }
+        else if(cmbArtistas.getSelectedItem().toString() == "Bad Bunny"){
+            
+            playAudio(BadBunny.getAudio());
+        }
+        else if(cmbArtistas.getSelectedItem().toString() == "Feid"){
+            
+            playAudio(Feid.getAudio());
+        }
+    }//GEN-LAST:event_btnSonidoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -210,6 +261,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSonido;
     private javax.swing.JComboBox<String> cmbArtistas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -221,5 +273,19 @@ public class VentanaOpciones extends javax.swing.JFrame {
 
     private ImageIcon resizeImage(String path, int width, int height) {
         return new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH));
+    }
+    
+    private void playAudio(String path){
+        
+        try{
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(path).getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            
+            clip.open(audioInputStream);
+            clip.start();
+        }
+        catch(IOException | LineUnavailableException | UnsupportedAudioFileException ex){
+            System.out.println("Error playing sound: " + ex.getMessage());
+        }
     }
 }
