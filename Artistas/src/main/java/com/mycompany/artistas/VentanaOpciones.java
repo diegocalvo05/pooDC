@@ -139,6 +139,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
                     txtDescripcion.setText(MariaBecerra.getDescripcion());
                     //lblimagen.setIcon(new ImageIcon(MariaBecerra.getImagen()));
                     lblimagen.setIcon(resizeImage("src/main/java/com/mycompany/artistas/imagenes/mariaBecerra.jpg", 500, 300));
+                    playSound("src/main/java/com/mycompany/artistas/imagenes/mariaaudio.wav");
                     //jPanel1.add(lblimagen);
                     break;
                 case "DUKI":
