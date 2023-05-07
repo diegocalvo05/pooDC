@@ -133,7 +133,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
             
             txtDescripcion.setText(MariaBecerra.getDescripcion());
             //lblimagen.setIcon(new ImageIcon(MariaBecerra.getImagen()));
-            lblimagen.setIcon(new ImageIcon("src/main/java/com/mycompany/artistas/imagenes/mariaBecerra.jpg"));
+            lblimagen.setIcon(resizeImage("src/main/java/com/mycompany/artistas/imagenes/mariaBecerra.jpg",500, 300));
             //jPanel1.add(lblimagen);
             
             
@@ -218,4 +218,7 @@ public class VentanaOpciones extends javax.swing.JFrame {
     private javax.swing.JLabel lblimagen;
     private javax.swing.JTextArea txtDescripcion;
     // End of variables declaration//GEN-END:variables
+        private ImageIcon resizeImage(String path, int width, int height) {
+        return new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH));
+    }
 }
